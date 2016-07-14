@@ -1,7 +1,9 @@
 package sample;
 
-import java.sql.Time;
+
 import java.util.Date;
+
+
 
 /**
  * Created by Praca on 2016-07-10.
@@ -12,10 +14,19 @@ public class Event {
 
     String name;
     Date creationDate;
-    Date dueDate;
+    Date dueDate ;
     String owner;
+    String visibleDate;
     int ownerId;
+    Event(){}
 
+    public Event(String name, Date dueDate,String visibleDate) {
+
+
+        this.name = name;
+        this.dueDate = dueDate;
+        this.visibleDate = visibleDate;
+    }
 
     public String getName() {
         return name;

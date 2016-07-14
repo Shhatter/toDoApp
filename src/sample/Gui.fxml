@@ -45,13 +45,13 @@
                   <VBox alignment="CENTER" prefHeight="276.0" prefWidth="161.0" spacing="5.0">
                      <children>
                         <Label text="Type date:" />
-                        <TextField fx:id="dateTextBox" />
+                        <TextField fx:id="dateTextBox" disable="true" />
                         <Label text="Type name:" />
-                        <TextField fx:id="nameTextBox" />
+                        <TextField fx:id="nameTextBox" disable="true" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
                               <Button fx:id="createNewButton" mnemonicParsing="false" onAction="#createNewTask" text="Create new" />
-                              <Button fx:id="OkNewToDoButton" alignment="CENTER" mnemonicParsing="false" onAction="#confirmNewTask" text="Ok">
+                              <Button fx:id="OkNewToDoButton" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#confirmNewTask" text="Ok">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -69,7 +69,7 @@
                   <VBox prefHeight="276.0" prefWidth="264.0">
                      <children>
                         <Label text="Type description" />
-                        <TextArea prefHeight="244.0" prefWidth="217.0">
+                        <TextArea fx:id="newToDoDescriptionTextArea" disable="true" prefHeight="244.0" prefWidth="217.0">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
