@@ -2,7 +2,7 @@ package sample;
 
 
 import java.util.Date;
-
+import java.util.StringJoiner;
 
 
 /**
@@ -16,13 +16,14 @@ public class Event {
     Date creationDate;
     Date dueDate ;
     String owner;
+    String description;
     String visibleDate;
     int ownerId;
     Event(){}
 
-    public Event(String name, Date dueDate,String visibleDate) {
+    public Event(String name, Date dueDate,String visibleDate,String description) {
 
-
+        this.description=description;
         this.name = name;
         this.dueDate = dueDate;
         this.visibleDate = visibleDate;

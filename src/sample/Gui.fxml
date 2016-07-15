@@ -45,7 +45,11 @@
                   <VBox alignment="CENTER" prefHeight="276.0" prefWidth="161.0" spacing="5.0">
                      <children>
                         <Label text="Type date:" />
-                        <TextField fx:id="dateTextBox" disable="true" />
+                        <DatePicker fx:id="dueDatePicker" disable="true" showWeekNumbers="true">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
                         <Label text="Type name:" />
                         <TextField fx:id="nameTextBox" disable="true" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
