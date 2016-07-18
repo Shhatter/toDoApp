@@ -36,7 +36,7 @@
                   <HBox alignment="CENTER" prefHeight="31.0" prefWidth="384.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="77.0" text="To do task:" />
-                        <Label fx:id="taskNameLabel" prefHeight="17.0" prefWidth="77.0" text="Task Name" />
+                        <Label fx:id="taskNameLabel" prefHeight="17.0" prefWidth="289.0" text="No task selected" />
                      </children>
                   </HBox>
                   <TextArea fx:id="toDoTaskView" editable="false" prefHeight="220.0" prefWidth="369.0" />

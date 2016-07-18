@@ -67,18 +67,22 @@ public class Controller implements Initializable{
 
     public void confirmNewTask(ActionEvent event) {
 
+        if (dueDatePicker.getValue() != null && nameTextBox.getText().isEmpty()==false && newToDoDescriptionTextArea.getText().isEmpty() ==false) {
+            crateNewTaskOnTheList();
+        } else {
+            Alert noDataAlert = new Alert(Alert.AlertType.WARNING, "Please fill all required fields");
+            noDataAlert.showAndWait();
+        }
+    }
 
-
-
-        //dueDatePicker.setValue(LocalDate.now());
-
-        LocalDate localDate = dueDatePicker.getValue();
+    public void crateNewTaskOnTheList() {
+        LocalDate localDate;
+        localDate = dueDatePicker.getValue();
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date date = Date.from(instant);
 
-//        System.out.println(date + "\n" + instant + "\n" + localDate);
 
-        Event toAddEvent = new Event(nameTextBox.getText(),date,localDate.toString(),newToDoDescriptionTextArea.getText());
+        Event toAddEvent = new Event(nameTextBox.getText(), date, localDate.toString(), newToDoDescriptionTextArea.getText());
         EventList.add(toAddEvent);
         observableEventList.add(nameTextBox.getText());
         toDoList.setItems(observableEventList);
@@ -92,8 +96,6 @@ public class Controller implements Initializable{
         createNewButton.setDisable(false);
         dueDatePicker.setValue(null);
         dueDatePicker.setDisable(true);
-
-
     }
 
     public void createNewTask(ActionEvent event) {
