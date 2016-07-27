@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+
 
 <GridPane fx:id="gridPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="809.0" style="-fx-background-color: LIGHTYELLOW;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <columnConstraints>
@@ -21,7 +23,8 @@
       <ListView fx:id="toDoList" prefHeight="549.0" prefWidth="375.0">
          <GridPane.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-         </GridPane.margin></ListView>
+         </GridPane.margin>
+      </ListView>
       <GridPane alignment="TOP_CENTER" prefHeight="511.0" prefWidth="408.0" GridPane.columnIndex="1">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

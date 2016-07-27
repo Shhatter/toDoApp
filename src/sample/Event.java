@@ -16,6 +16,7 @@ public class Event {
     Date creationDate;
     Date dueDate ;
     String owner;
+    int priority;
 
     public String getDescription() {
         return description;
