@@ -46,20 +46,19 @@ public class Controller implements Initializable{
     public Button createNewButton;
     public TextField deadlineDateTextBox;
     public ListView<String> toDoList = new ListView<String>();
-    public ListView<String> tempToDoList = new ListView<String>();
     public List<Event> EventList = new ArrayList<Event>();
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
     public Button newTaskButton2;
 
-    //second window
-    public Button confirmNewTaskButton;
-    public TextField newTaskTitle;
+
+
 
 
 
 
 @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+
     toDoList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     toDoList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
         @Override
@@ -72,9 +71,8 @@ public class Controller implements Initializable{
 
         }
     });
-    // initialize your logic here: all @FXML variables will have been injected
+
     }
-  //  ObservableList<Event> data = FXCollections.observableArrayList();
 
 
     @FXML
@@ -117,7 +115,16 @@ public class Controller implements Initializable{
         createNewButton.setDisable(false);
         dueDatePicker.setValue(null);
         dueDatePicker.setDisable(true);
+
     }
+
+    void initData( List<Event> eventList, ObservableList<String> observableEventList) {
+
+        EventList = eventList;
+        this.observableEventList = observableEventList;
+    }
+
+
 
     public void createNewTask(ActionEvent event) {
 
@@ -142,8 +149,6 @@ public class Controller implements Initializable{
 @FXML
     public void addNewTask(ActionEvent event) throws IOException{
 
-
-
     FXMLLoader loader = new FXMLLoader();
 
     loader.setLocation(getClass().getResource("newTaskView.fxml"));
@@ -154,7 +159,7 @@ public class Controller implements Initializable{
     Scene newTaskScene = new Scene(root);
     appStage.setScene(newTaskScene);
     CreateNewTask createNewTask = loader.getController();
-    createNewTask.initData("dupa");
+    createNewTask.initData(EventList,observableEventList);
     appStage.show();
     }
 

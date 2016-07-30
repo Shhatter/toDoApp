@@ -39,17 +39,19 @@ import java.util.ArrayList;
 public class CreateNewTask implements  Initializable{
     @FXML
     public Button confirmNewTaskButton;
-    public TextField newTaskTitle;
+    public TextField titleTextBox;
+    public DatePicker dueDatePicker;
+    public TextArea newToDoDescriptionTextArea;
+
+    public ListView<String> toDoList = new ListView<String>();
+    public List<Event> EventList = new ArrayList<Event>();
+    public ObservableList<String> observableEventList = FXCollections.observableArrayList();
 
 
+    void initData( List<Event> eventList, ObservableList<String> observableEventList) {
 
-
-
-    private void initialize() {
-    }
-
-    void initData(String customer) {
-        newTaskTitle.setText(customer);
+        EventList = eventList;
+        this.observableEventList = observableEventList;
     }
 
     @Override
@@ -64,8 +66,23 @@ public class CreateNewTask implements  Initializable{
     @FXML
     public void confirmNewTaskToListAction(ActionEvent event) throws IOException{
 
-        FXMLLoader loader = new FXMLLoader();
+        if (dueDatePicker.getValue() != null && titleTextBox.getText().isEmpty()==false && newToDoDescriptionTextArea.getText().isEmpty() ==false) {
+            crateNewTaskOnTheList();
+            sendDataToMainWindow(event);
+        } else {
+            Alert noDataAlert = new Alert(Alert.AlertType.WARNING, "Please fill all required fields" + EventList.size());
+            noDataAlert.showAndWait();
+        }
 
+
+    }
+
+
+
+
+@FXML
+    public void sendDataToMainWindow(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("Gui.fxml"));
         loader.load();
         Parent root  = loader.getRoot();
@@ -73,7 +90,34 @@ public class CreateNewTask implements  Initializable{
         appStage.setTitle("To do application ");
         Scene newTaskScene = new Scene(root);
         appStage.setScene(newTaskScene);
+        Controller addElementToMainWIndow = loader.getController();
+        addElementToMainWIndow.initData(EventList,observableEventList);
+        addElementToMainWIndow.toDoList.refresh();
+        addElementToMainWIndow.toDoList.setItems(observableEventList);
         appStage.show();
+    }
+
+    public void crateNewTaskOnTheList() {
+        LocalDate localDate;
+        localDate = dueDatePicker.getValue();
+        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        Date date = Date.from(instant);
+
+
+        Event toAddEvent = new Event(titleTextBox.getText(), date, localDate.toString(), newToDoDescriptionTextArea.getText());
+        EventList.add(toAddEvent);
+        observableEventList.add(titleTextBox.getText());
+        toDoList.setItems(observableEventList);
+
+//        OkNewToDoButton.setDisable(true);
+
+/*      titleTextBox.setDisable(true);
+        titleTextBox.setText("");
+        newToDoDescriptionTextArea.setDisable(true);
+        newToDoDescriptionTextArea.setText("");
+        createNewButton.setDisable(false);
+        dueDatePicker.setValue(null);
+        dueDatePicker.setDisable(true);*/
 
     }
 
