@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
@@ -44,10 +45,10 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Slider blockIncrement="0.0" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" prefHeight="47.0" prefWidth="381.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
-               <effect>
-                  <SepiaTone level="0.65" />
-               </effect>
+            <Slider fx:id="prioritySlider" blockIncrement="0.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="47.0" prefWidth="381.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-font-size: 30; -fx-font-color: RED;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
             </Slider>
          </children>
          <BorderPane.margin>
@@ -58,12 +59,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-border-color: #7c8be8;" text="Clear" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
+            <Button fx:id="clearAllFields" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clearFields" prefHeight="80.0" prefWidth="150.0" style="-fx-border-color: #7c8be8;" text="Clear" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
                <font>
                   <Font size="41.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="87.0" prefWidth="236.0" style="-fx-border-color: #7c8be8;" text="Cancel" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
+            <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="87.0" prefWidth="236.0" style="-fx-border-color: #7c8be8;" text="Cancel" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
                <font>
                   <Font size="41.0" />
                </font>

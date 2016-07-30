@@ -42,6 +42,9 @@ public class CreateNewTask implements  Initializable{
     public TextField titleTextBox;
     public DatePicker dueDatePicker;
     public TextArea newToDoDescriptionTextArea;
+    public Slider prioritySlider;
+    public Button clearAllFields;
+    public Button cancelButton;
 
     public ListView<String> toDoList = new ListView<String>();
     public List<Event> EventList = new ArrayList<Event>();
@@ -56,6 +59,7 @@ public class CreateNewTask implements  Initializable{
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        prioritySlider.setValue(2);
 
 
         // initialize your logic here: all @FXML variables will have been injected
@@ -70,7 +74,7 @@ public class CreateNewTask implements  Initializable{
             crateNewTaskOnTheList();
             sendDataToMainWindow(event);
         } else {
-            Alert noDataAlert = new Alert(Alert.AlertType.WARNING, "Please fill all required fields" + EventList.size());
+            Alert noDataAlert = new Alert(Alert.AlertType.WARNING, "Please fill all required fields");
             noDataAlert.showAndWait();
         }
 
@@ -104,21 +108,25 @@ public class CreateNewTask implements  Initializable{
         Date date = Date.from(instant);
 
 
-        Event toAddEvent = new Event(titleTextBox.getText(), date, localDate.toString(), newToDoDescriptionTextArea.getText());
+
+        Event toAddEvent = new Event(titleTextBox.getText(), date, localDate.toString(), newToDoDescriptionTextArea.getText(),(int)  prioritySlider.getValue());
         EventList.add(toAddEvent);
-        observableEventList.add(titleTextBox.getText());
+        observableEventList.add(EventList.size()+" "+titleTextBox.getText() +" "+date+ " priority: "+(int) prioritySlider.getValue());
         toDoList.setItems(observableEventList);
 
-//        OkNewToDoButton.setDisable(true);
-
-/*      titleTextBox.setDisable(true);
-        titleTextBox.setText("");
-        newToDoDescriptionTextArea.setDisable(true);
-        newToDoDescriptionTextArea.setText("");
-        createNewButton.setDisable(false);
-        dueDatePicker.setValue(null);
-        dueDatePicker.setDisable(true);*/
 
     }
 
+
+    public void clearFields(ActionEvent event){
+
+        titleTextBox.setText("");
+        newToDoDescriptionTextArea.setText("");
+        dueDatePicker.setValue(null);
+        prioritySlider.setValue(2);
+    }
+
+    public void cancelCreation(ActionEvent event)throws IOException {
+        sendDataToMainWindow(event);
+    }
 }

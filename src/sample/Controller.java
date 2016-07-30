@@ -45,6 +45,9 @@ public class Controller implements Initializable{
     public List<Event> EventList = new ArrayList<Event>();
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
     public Button newTaskButton2;
+    public Label priorityLabel;
+
+
 
 
 
@@ -64,6 +67,25 @@ public class Controller implements Initializable{
             taskNameLabel.setText(EventList.get(indexOfListVIew).getName());
             toDoTaskView.setText(EventList.get(indexOfListVIew).getDescription());
             deadlineDateTextBox.setText(EventList.get(indexOfListVIew).getVisibleDate());
+            switch (EventList.get(indexOfListVIew).getPriority())
+            {
+                case 1:
+                    priorityLabel.setText("PRIORITY 1");
+                    priorityLabel.setStyle("-fx-text-fill: red;");
+                    break;
+                case 2:
+                    priorityLabel.setText("PRIORITY 2");
+                    priorityLabel.setStyle("-fx-text-fill: #EE7600;");
+                    break;
+                case 3:
+                    priorityLabel.setText("PRIORITY 3");
+                    priorityLabel.setStyle("-fx-text-fill: green;");
+                    break;
+                default:
+                    priorityLabel.setText("NO PRIORITY :)");
+                    priorityLabel.setStyle("-fx-text-fill: blue;");
+                    break;
+            }
 
         }
     });

@@ -15,7 +15,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="newTaskButton2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addNewTask" prefHeight="87.0" prefWidth="293.0" text="Create new task">
+            <Button fx:id="newTaskButton2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addNewTask" prefHeight="87.0" prefWidth="293.0" text="Create new task" textFill="#1c24c3">
                <font>
                   <Font size="39.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="taskNameLabel" prefHeight="17.0" prefWidth="134.0" text="No task selected">
+            <Label fx:id="taskNameLabel" prefHeight="17.0" prefWidth="134.0" text="No task selected" textFill="#1c24c3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -66,6 +66,23 @@
                         <Font size="18.0" />
                      </font></Label>
                   <TextField fx:id="deadlineDateTextBox" editable="false" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="384.0" spacing="5.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="110.0" text="Priority: " textFill="#1c24c3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="priorityLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="148.0" text="-" textFill="#1c24c3">
+                     <font>
+                        <Font name="Arial Bold" size="23.0" />
+                     </font>
+                  </Label>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

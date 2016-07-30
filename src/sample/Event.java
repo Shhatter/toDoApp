@@ -37,13 +37,13 @@ public class Event {
     String description;
     String visibleDate;
     int ownerId;
-    Event(){}
 
-    public Event(String name, Date dueDate,String visibleDate,String description) {
+    public Event(String name, Date dueDate,String visibleDate,String description,int slider) {
 
         this.description=description;
         this.name = name;
         this.dueDate = dueDate;
+        this.priority = slider;
         this.visibleDate = visibleDate;
     }
 
@@ -97,5 +97,13 @@ public class Event {
         dueDate=_dueDate;
         owner=_owner;
         int ownerId =_ownerId;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }
