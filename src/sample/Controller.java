@@ -5,15 +5,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 import java.awt.*;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -39,8 +46,15 @@ public class Controller implements Initializable{
     public Button createNewButton;
     public TextField deadlineDateTextBox;
     public ListView<String> toDoList = new ListView<String>();
+    public ListView<String> tempToDoList = new ListView<String>();
     public List<Event> EventList = new ArrayList<Event>();
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
+    public Button newTaskButton2;
+
+    //second window
+    public Button confirmNewTaskButton;
+    public TextField newTaskTitle;
+
 
 
 
@@ -61,6 +75,12 @@ public class Controller implements Initializable{
     // initialize your logic here: all @FXML variables will have been injected
     }
   //  ObservableList<Event> data = FXCollections.observableArrayList();
+
+
+    @FXML
+    public void openNewTaskWindow(){
+
+    }
 
     public void pressButton(ActionEvent event){
 
@@ -119,6 +139,24 @@ public class Controller implements Initializable{
 
 
 
+@FXML
+    public void addNewTask(ActionEvent event) throws IOException{
+
+
+
+    FXMLLoader loader = new FXMLLoader();
+
+    loader.setLocation(getClass().getResource("newTaskView.fxml"));
+    loader.load();
+    Parent root  = loader.getRoot();
+    Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    appStage.setTitle("To do application ");
+    Scene newTaskScene = new Scene(root);
+    appStage.setScene(newTaskScene);
+    CreateNewTask createNewTask = loader.getController();
+    createNewTask.initData("dupa");
+    appStage.show();
+    }
 
 
 }

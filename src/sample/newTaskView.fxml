@@ -12,8 +12,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="747.0" style="-fx-background-color: #2da375;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CreateNewTask">
    <top>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="80.0" prefWidth="359.0" text="Create new Task" BorderPane.alignment="CENTER">
          <font>
@@ -29,7 +28,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <TextField>
+            <TextField fx:id="newTaskTitle">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -45,7 +44,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Slider blockIncrement="0.0" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" prefHeight="47.0" prefWidth="375.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+            <Slider blockIncrement="0.0" majorTickUnit="1.0" max="3.0" min="1.0" minorTickCount="0" prefHeight="47.0" prefWidth="381.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
                <effect>
                   <SepiaTone level="0.65" />
                </effect>
@@ -59,17 +58,17 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" text="Clear" textAlignment="CENTER" textFill="#7c2222" wrapText="true">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" style="-fx-border-color: #7c8be8;" text="Clear" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
                <font>
                   <Font size="41.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="87.0" prefWidth="236.0" text="Cancel" textAlignment="CENTER" textFill="#7c2222" wrapText="true">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="87.0" prefWidth="236.0" style="-fx-border-color: #7c8be8;" text="Cancel" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
                <font>
                   <Font size="41.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="80.0" prefWidth="150.0" text="Ok" textAlignment="CENTER" textFill="#7c2222" wrapText="true">
+            <Button fx:id="confirmNewTaskButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmNewTaskToListAction" prefHeight="80.0" prefWidth="150.0" style="-fx-border-color: #7c8be8;" text="Ok" textAlignment="CENTER" textFill="#2b227a" wrapText="true">
                <font>
                   <Font size="41.0" />
                </font>
@@ -91,7 +90,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <TextArea editable="false" prefHeight="320.0" prefWidth="332.0" />
+            <TextArea prefHeight="320.0" prefWidth="332.0" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
