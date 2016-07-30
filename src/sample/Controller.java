@@ -5,14 +5,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 
 import java.awt.*;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -29,22 +37,27 @@ import java.util.ArrayList;
 public class Controller implements Initializable{
 
 
-    public TextField nameTextBox;
-    public TextArea newToDoDescriptionTextArea;
-    public DatePicker dueDatePicker;
+
     public TextArea toDoTaskView;
-    public Button OkNewToDoButton;
     public Label taskNameLabel;
-    public Button createNewButton;
     public TextField deadlineDateTextBox;
     public ListView<String> toDoList = new ListView<String>();
     public List<Event> EventList = new ArrayList<Event>();
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
+    public Button newTaskButton2;
+    public Label priorityLabel;
+
+
+
+
+
+
 
 
 
 @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+
     toDoList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     toDoList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
         @Override
@@ -54,70 +67,56 @@ public class Controller implements Initializable{
             taskNameLabel.setText(EventList.get(indexOfListVIew).getName());
             toDoTaskView.setText(EventList.get(indexOfListVIew).getDescription());
             deadlineDateTextBox.setText(EventList.get(indexOfListVIew).getVisibleDate());
+            switch (EventList.get(indexOfListVIew).getPriority())
+            {
+                case 1:
+                    priorityLabel.setText("PRIORITY 1");
+                    priorityLabel.setStyle("-fx-text-fill: red;");
+                    break;
+                case 2:
+                    priorityLabel.setText("PRIORITY 2");
+                    priorityLabel.setStyle("-fx-text-fill: #EE7600;");
+                    break;
+                case 3:
+                    priorityLabel.setText("PRIORITY 3");
+                    priorityLabel.setStyle("-fx-text-fill: green;");
+                    break;
+                default:
+                    priorityLabel.setText("NO PRIORITY :)");
+                    priorityLabel.setStyle("-fx-text-fill: blue;");
+                    break;
+            }
 
         }
     });
-    // initialize your logic here: all @FXML variables will have been injected
-    }
-  //  ObservableList<Event> data = FXCollections.observableArrayList();
-
-    public void pressButton(ActionEvent event){
 
     }
 
-    public void confirmNewTask(ActionEvent event) {
 
-        if (dueDatePicker.getValue() != null && nameTextBox.getText().isEmpty()==false && newToDoDescriptionTextArea.getText().isEmpty() ==false) {
-            crateNewTaskOnTheList();
-        } else {
-            Alert noDataAlert = new Alert(Alert.AlertType.WARNING, "Please fill all required fields");
-            noDataAlert.showAndWait();
-        }
+    void initData( List<Event> eventList, ObservableList<String> observableEventList) {
+
+        EventList = eventList;
+        this.observableEventList = observableEventList;
     }
 
-    public void crateNewTaskOnTheList() {
-        LocalDate localDate;
-        localDate = dueDatePicker.getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date date = Date.from(instant);
 
 
-        Event toAddEvent = new Event(nameTextBox.getText(), date, localDate.toString(), newToDoDescriptionTextArea.getText());
-        EventList.add(toAddEvent);
-        observableEventList.add(nameTextBox.getText());
-        toDoList.setItems(observableEventList);
+@FXML
+    public void addNewTask(ActionEvent event) throws IOException{
 
-        OkNewToDoButton.setDisable(true);
+    FXMLLoader loader = new FXMLLoader();
 
-        nameTextBox.setDisable(true);
-        nameTextBox.setText("");
-        newToDoDescriptionTextArea.setDisable(true);
-        newToDoDescriptionTextArea.setText("");
-        createNewButton.setDisable(false);
-        dueDatePicker.setValue(null);
-        dueDatePicker.setDisable(true);
+    loader.setLocation(getClass().getResource("newTaskView.fxml"));
+    loader.load();
+    Parent root  = loader.getRoot();
+    Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    appStage.setTitle("To do application ");
+    Scene newTaskScene = new Scene(root);
+    appStage.setScene(newTaskScene);
+    CreateNewTask createNewTask = loader.getController();
+    createNewTask.initData(EventList,observableEventList);
+    appStage.show();
     }
-
-    public void createNewTask(ActionEvent event) {
-
-        setButtonsToFalse();
-
-
-    }
-
-    public void setButtonsToFalse() {
-        OkNewToDoButton.setDisable(false);
-        nameTextBox.setDisable(false);
-        newToDoDescriptionTextArea.setDisable((false));
-        dueDatePicker.setDisable(false);
-        OkNewToDoButton.setDisable(false);
-        createNewButton.setDisable(true);
-        dueDatePicker.setDisable(false);
-
-}
-
-
-
 
 
 }
