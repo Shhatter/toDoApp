@@ -37,13 +37,9 @@ import java.util.ArrayList;
 public class Controller implements Initializable{
 
 
-    public TextField nameTextBox;
-    public TextArea newToDoDescriptionTextArea;
-    public DatePicker dueDatePicker;
+
     public TextArea toDoTaskView;
-    public Button OkNewToDoButton;
     public Label taskNameLabel;
-    public Button createNewButton;
     public TextField deadlineDateTextBox;
     public ListView<String> toDoList = new ListView<String>();
     public List<Event> EventList = new ArrayList<Event>();
@@ -75,74 +71,11 @@ public class Controller implements Initializable{
     }
 
 
-    @FXML
-    public void openNewTaskWindow(){
-
-    }
-
-    public void pressButton(ActionEvent event){
-
-    }
-
-    public void confirmNewTask(ActionEvent event) {
-
-        if (dueDatePicker.getValue() != null && nameTextBox.getText().isEmpty()==false && newToDoDescriptionTextArea.getText().isEmpty() ==false) {
-            crateNewTaskOnTheList();
-        } else {
-            Alert noDataAlert = new Alert(Alert.AlertType.WARNING, "Please fill all required fields");
-            noDataAlert.showAndWait();
-        }
-    }
-
-    public void crateNewTaskOnTheList() {
-        LocalDate localDate;
-        localDate = dueDatePicker.getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date date = Date.from(instant);
-
-
-        Event toAddEvent = new Event(nameTextBox.getText(), date, localDate.toString(), newToDoDescriptionTextArea.getText());
-        EventList.add(toAddEvent);
-        observableEventList.add(nameTextBox.getText());
-        toDoList.setItems(observableEventList);
-
-        OkNewToDoButton.setDisable(true);
-
-        nameTextBox.setDisable(true);
-        nameTextBox.setText("");
-        newToDoDescriptionTextArea.setDisable(true);
-        newToDoDescriptionTextArea.setText("");
-        createNewButton.setDisable(false);
-        dueDatePicker.setValue(null);
-        dueDatePicker.setDisable(true);
-
-    }
-
     void initData( List<Event> eventList, ObservableList<String> observableEventList) {
 
         EventList = eventList;
         this.observableEventList = observableEventList;
     }
-
-
-
-    public void createNewTask(ActionEvent event) {
-
-        setButtonsToFalse();
-
-
-    }
-
-    public void setButtonsToFalse() {
-        OkNewToDoButton.setDisable(false);
-        nameTextBox.setDisable(false);
-        newToDoDescriptionTextArea.setDisable((false));
-        dueDatePicker.setDisable(false);
-        OkNewToDoButton.setDisable(false);
-        createNewButton.setDisable(true);
-        dueDatePicker.setDisable(false);
-
-}
 
 
 

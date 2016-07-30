@@ -83,7 +83,7 @@ public class CreateNewTask implements  Initializable{
 @FXML
     public void sendDataToMainWindow(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("Gui.fxml"));
+        loader.setLocation(getClass().getResource("MainGuiView.fxml"));
         loader.load();
         Parent root  = loader.getRoot();
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
