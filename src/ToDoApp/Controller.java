@@ -1,4 +1,4 @@
-package sample;
+package ToDoApp;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,22 +17,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-
-import java.awt.*;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.util.List;
-import java.util.ArrayList;
 
 public class Controller implements Initializable{
 
@@ -46,20 +35,14 @@ public class Controller implements Initializable{
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
     public Button newTaskButton2;
     public Label priorityLabel;
+    ObservableList<Event> eventData = FXCollections.observableArrayList();
 
 
 
-
-
-
-
-
-
-@Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 
-    toDoList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-    toDoList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        toDoList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        toDoList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
@@ -67,6 +50,7 @@ public class Controller implements Initializable{
             taskNameLabel.setText(EventList.get(indexOfListVIew).getName());
             toDoTaskView.setText(EventList.get(indexOfListVIew).getDescription());
             deadlineDateTextBox.setText(EventList.get(indexOfListVIew).getVisibleDate());
+
             switch (EventList.get(indexOfListVIew).getPriority())
             {
                 case 1:

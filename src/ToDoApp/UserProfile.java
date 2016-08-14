@@ -1,4 +1,4 @@
-package sample;
+package ToDoApp;
 
 /**
  * Created by Praca on 2016-07-10.

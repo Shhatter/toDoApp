@@ -1,8 +1,7 @@
-package sample;
+package ToDoApp;
 
 
 import java.util.Date;
-import java.util.StringJoiner;
 
 
 /**
@@ -99,6 +98,9 @@ public class Event {
         int ownerId =_ownerId;
     }
 
+    public Event(){
+
+    }
     public int getPriority() {
         return priority;
     }
