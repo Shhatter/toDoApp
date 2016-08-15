@@ -17,6 +17,9 @@ public class DataContainer {
     private final ObservableList<Event> eventList = FXCollections.observableArrayList();
     private final ObjectProperty<Event> currentEvent = new SimpleObjectProperty<>(null);
 
+
+
+
     public void saveDataToFile(File s){
     }
     public void loadDataFromFIle(File s){

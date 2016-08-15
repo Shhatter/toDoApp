@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import mainController.Controller;
 
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class CreateNewTask implements  Initializable{
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
 
 
-    void initData( List<Event> eventList, ObservableList<String> observableEventList) {
+    public void initData( List<Event> eventList, ObservableList<String> observableEventList) {
 
         EventList = eventList;
         this.observableEventList = observableEventList;
@@ -78,7 +79,7 @@ public class CreateNewTask implements  Initializable{
 @FXML
     public void sendDataToMainWindow(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("MainGuiView.fxml"));
+        loader.setLocation(getClass().getResource("/mainController/MainGuiView.fxml"));
         loader.load();
         Parent root  = loader.getRoot();
         Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

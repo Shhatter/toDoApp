@@ -1,5 +1,8 @@
-package ToDoApp;
+package mainController;
 
+import ToDoApp.Main;
+import ToDoApp.CreateNewTask;
+import ToDoApp.Event;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,7 +38,7 @@ public class Controller implements Initializable{
     public ObservableList<String> observableEventList = FXCollections.observableArrayList();
     public Button newTaskButton2;
     public Label priorityLabel;
-    ObservableList<Event> eventData = FXCollections.observableArrayList();
+    public ObservableList<Event> eventData = FXCollections.observableArrayList();
 
 
 
@@ -77,7 +80,7 @@ public class Controller implements Initializable{
     }
 
 
-    void initData( List<Event> eventList, ObservableList<String> observableEventList) {
+    public void initData( List<Event> eventList, ObservableList<String> observableEventList) {
 
         EventList = eventList;
         this.observableEventList = observableEventList;
@@ -90,7 +93,7 @@ public class Controller implements Initializable{
 
     FXMLLoader loader = new FXMLLoader();
 
-    loader.setLocation(getClass().getResource("newTaskView.fxml"));
+    loader.setLocation(getClass().getResource("/ToDoApp/newTaskView.fxml"));
     loader.load();
     Parent root  = loader.getRoot();
     Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
